@@ -1,12 +1,13 @@
-{% extends "base.html" %}
-
+{% extends 'base.html' %}
+{% load colaborador_tags %}
 {% block contenido %}
+
 <div class="container my-5 mx-auto">
+    {% if user.is_superuser or request.user|has_group:'Colaborador' %}
     <div class="container-fluid" style="margin-top: 100px;">
         <h1>Agregar nueva categoría</h1>
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-            
             <div class="mb-3">
                 {{ form.as_p }}
             </div>
@@ -15,6 +16,13 @@
         <div class="container-fluid my-3">
             <a id="boton_post" href="{% url "apps.posts:categoria_list" %}" class="btn btn-primary">Listar todas las categorías</a>
         </div>
-    </div>    
+    </div> 
+    {% else %}
+    <div class="container" style="margin: 300px;">
+        <h1>
+            Solo usuarios con permisos pueden acceder a esta página
+        </h1>
+    </div>
+    {% endif %}   
 </div>
 {% endblock  %}

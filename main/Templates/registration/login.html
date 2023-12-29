@@ -18,10 +18,13 @@
         {% csrf_token %}
         <div class="container">
             <table>{{ form }}</table>
-            <br>
+            <br><br>
+            <a style="color: black;" href="{% url "apps.usuario:password_reset" %}">Olvidaste tu contraseña? Haz click acá</a>
+            <br><br>
             <a style="color: black;" href="{% url "apps.usuario:registrar" %}">Todavía no está registrado? Regístrate</a>
             <br><br>
             <button type="submit" class="btn btn-success btn-lg px-3">Inicial sesión</button>
+            
         </div>
     </form>
 

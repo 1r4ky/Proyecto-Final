@@ -59,7 +59,7 @@ class UsuarioDeleteView(LoginRequiredMixin, DeleteView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         colaborador_group = Group.objects.get(name='Colaborador')
-        es_colaborador = colaborador_group in self.object.group.all()
+        es_colaborador = colaborador_group in self.object.groups.all()
         context['es_colaborador'] = es_colaborador
         
     def post(self, request, *args, **kwargs):

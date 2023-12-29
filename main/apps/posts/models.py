@@ -20,7 +20,7 @@ class Post(models.Model):
     texto = models.TextField(null=False)
     activo = models.BooleanField(default=True)
     categoria = models.ForeignKey(Categoria, on_delete=models.SET_NULL, null=True)
-    imagen = models.ImageField(null=True, blank=True, upload_to='media', default='static/post_default.png')
+    imagen = models.FileField(null=True, blank=True, upload_to='', default='static/post_default.png')
     publicado = models.DateTimeField(default=timezone.now)
     autor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
 

@@ -5,11 +5,16 @@
     <h1 class="text-center">Categorías</h1>
 
     <ul class="list-group">
-        {% for categoria in categorias %}
+    {% for categoria in categorias %}
+        {% if user.is_superuser or es_colaborador %}
             <li class="list-group-item d-flex justify-content-between align-items-center">
                 {{ categoria.nombre }}
+                <a href="{% url 'apps.posts:posts_por_categoria' pk=categoria.pk %}" class="btn btn-success">
+                    Ingresar
+                </a>
                 <a href="{% url "apps.posts:categoria_delete" pk=categoria.pk %}" class="btn btn-danger">Eliminar</a>
             </li>
+            {% endif %}
         {% empty %}
             <li class="list-group-item">No hay categorías</li>
         {% endfor %}
