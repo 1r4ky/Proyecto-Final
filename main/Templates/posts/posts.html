@@ -5,7 +5,7 @@
 {% block contenido %}
 <div class="container d-flex justify-content-evenly align-items-between vh-100">
     <div class="container-fluid mt-4">
-        {% if user.is_superuser or request.user|has_group:"Colaborador" %}
+        {% if user.is_superuser or request.user|has_group:"Colaborador" or request.user|has_group:"Registrado" %}
             <div class="mb-3 text-center">
                 <a id="boton_post" class="btn btn-primary" href="{% url "apps.posts:crear_post" %}">Crear nuevo post</a>
             </div>
@@ -15,7 +15,7 @@
         <div class="list-group text-center">
             <a href="{% url "apps.posts:posts" %}?orden=reciente" class="list-group-item list-group-item-action active">Más reciente</a>
             <a href="{% url "apps.posts:posts" %}?orden=antiguo" class="list-group-item list-group-item-action">Más antiguo</a>
-            <a href="{% url "apps.posts:posts" %}?orden=alfabetico" class="list-group-item list-group-item-action disabled">Orden alfabético</a>
+            <a href="{% url "apps.posts:posts" %}?orden=alfabetico" class="list-group-item list-group-item-action">Orden alfabético</a>
         </div>
     </div>
 

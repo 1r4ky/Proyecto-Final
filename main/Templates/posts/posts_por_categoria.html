@@ -5,8 +5,9 @@
     <div class="list-group">
         <h1 class="text-center mb-4">Posts por Categorías</h1>
         {% for post in posts %}
-        <a href="{% url "apps.posts:post_individual" id=posts.id %}" class="list-group-item list-group-item-action">
-            {{ posts.titulo }}
+        <a href="{% url 'apps.posts:post_individual' post.id %}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+            <span>{{ post.titulo }}</span>
+            <span class="badge bg-primary">Ver más</span>
         </a>
         {% endfor %}
     </div>

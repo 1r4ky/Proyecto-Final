@@ -6,3 +6,6 @@ def index(request):
 
 def pagina_404(request, exception):
     return HttpResponseNotFound('<h1>Página no encontrada</h1>')
+
+def about(request):
+    return render(request, 'about.html')
