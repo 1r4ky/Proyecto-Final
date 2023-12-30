@@ -3,7 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse, reverse_lazy
 from apps import posts
-from .forms import ComentarioForm, CrearPostForm, NuevaCategoriaForm
+from .forms import ComentarioForm, CrearPostForm, NuevaCategoriaForm, PostUpdateForm
 from .models import Categoria, Comentario, Post
 from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -119,9 +119,12 @@ class CategoriaDeleteView(LoginRequiredMixin, DeleteView):
 
 class PostUpdateView(LoginRequiredMixin, UpdateView):
     model = Post
-    form_class = CrearPostForm
+    form_class = PostUpdateForm
     template_name = "posts/modificar_posts.html"
     success_url = reverse_lazy('apps.posts:posts')
+        
+    def get_success_url(self):
+        return reverse_lazy('apps.posts:post_individual', kwargs={'id': self.object.pk})
 
 class PostDeleteView(LoginRequiredMixin, DeleteView):
     model = Post

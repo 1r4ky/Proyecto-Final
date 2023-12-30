@@ -15,3 +15,9 @@ class NuevaCategoriaForm(forms.ModelForm):
     class Meta:
         model = Categoria
         fields ='__all__'
+
+
+class PostUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = ['categoria']
